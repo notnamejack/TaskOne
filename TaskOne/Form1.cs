@@ -41,24 +41,23 @@ namespace TaskOne
             MessageBox.Show("Файл сохранен");
         }
 
-        public string Remove()
+        public string RemoveWord()
         {
             string result = "";
-            string text = textBox1.Text;
-            
+            string text = "И поэтому все так произошло";
+
             string[] words = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (string word in words)
-            {
-                result += Regex.Replace(word, "[-.?!)(,:;]", "") + " ";
-            }
 
             return result;
         }
 
+
         private void Button3_Click(object sender, EventArgs e)
         {
-            textBox1.Text = Remove();
+            int n = textBox1.Text.Length;
+            textBox1.Text = Regex.Replace(textBox1.Text, "[-.?!)(,:;]", "");
+            MessageBox.Show("Удалено " + (n - textBox1.Text.Length) + " знака припенная");
         }
     }
 }
