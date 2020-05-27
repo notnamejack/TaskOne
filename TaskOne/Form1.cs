@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,6 +39,26 @@ namespace TaskOne
             System.IO.File.WriteAllText(filename, textBox1.Text);
             saveFileDialog1.FileName = "";
             MessageBox.Show("Файл сохранен");
+        }
+
+        public string Remove()
+        {
+            string result = "";
+            string text = textBox1.Text;
+            
+            string[] words = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in words)
+            {
+                result += Regex.Replace(word, "[-.?!)(,:;]", "") + " ";
+            }
+
+            return result;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = Remove();
         }
     }
 }
