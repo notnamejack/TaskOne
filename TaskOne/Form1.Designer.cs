@@ -41,11 +41,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 70);
+            this.textBox1.Location = new System.Drawing.Point(12, 28);
             this.textBox1.MaxLength = 1000000;
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(253, 267);
             this.textBox1.TabIndex = 0;
             // 
@@ -89,15 +88,15 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(222, 23);
             this.button4.TabIndex = 4;
-            this.button4.Text = "Удалить слова";
+            this.button4.Text = "Удалить символа";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(444, 72);
+            this.textBox2.Location = new System.Drawing.Point(461, 72);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(72, 20);
+            this.textBox2.Size = new System.Drawing.Size(55, 20);
             this.textBox2.TabIndex = 5;
             // 
             // label1
@@ -105,15 +104,15 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(294, 73);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 13);
+            this.label1.Size = new System.Drawing.Size(161, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Минимальная длина слово";
+            this.label1.Text = "Минимальная длина символа ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(645, 364);
+            this.ClientSize = new System.Drawing.Size(543, 318);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button4);

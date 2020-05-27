@@ -30,7 +30,8 @@ namespace TaskOne
 
             string filename = openFileDialog1.FileName;
             string fileText = System.IO.File.ReadAllText(filename);
-            textBox1.Text = fileText;
+            textBox1.Text += "Загружен файл: \r\n" + filename + "\r\n";
+            ListFile.files.Add(new File(filename, fileText));
             openFileDialog1.FileName = "";
 
 
@@ -39,32 +40,49 @@ namespace TaskOne
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
-                return;
-            string filename = saveFileDialog1.FileName;
-            System.IO.File.WriteAllText(filename, textBox1.Text);
-            saveFileDialog1.FileName = "";
-            MessageBox.Show("Файл сохранен");
+            foreach(File file in ListFile.files)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                    return;
+                string filename = saveFileDialog1.FileName;
+                System.IO.File.WriteAllText(filename, file.fileText);
+                saveFileDialog1.FileName = "";
+                MessageBox.Show("Файл " + filename + " сохранен");
+            }
+           
         }
 
      
         private void Button3_Click(object sender, EventArgs e)
         {
-            int n = textBox1.Text.Length;
-            textBox1.Text = Regex.Replace(textBox1.Text, @"[-.?!)(,:;]", "");
-            MessageBox.Show("Удалено " + (n - textBox1.Text.Length) + " знака припенная");
+            foreach(File file in ListFile.files)
+            {
+                int n = file.fileText.Length;
+
+                file.fileText = Regex.Replace(file.fileText, @"[-.?!)(,:;]", "");
+
+                MessageBox.Show("В файле " + file.filename + " удалено " + (n - file.fileText.Length) + " знака припенная");
+            }
+           
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            string[] word = textBox1.Text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            int n = int.Parse(textBox2.Text);
-            textBox1.Text = Regex.Replace(textBox1.Text, @"\b[\w]{0,"+n+@"}\b", string.Empty, RegexOptions.Compiled);
-            textBox1.Text = Regex.Replace(textBox1.Text, @"\s+", " ");
+            foreach(File file in ListFile.files)
+            {
+                string[] word = file.fileText.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            string[] words = textBox1.Text.Split(new []{ ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                int n = int.Parse(textBox2.Text);
 
-            MessageBox.Show("Удалено " +(word.Length - words.Length)+ " слов, меньше " + n);
+                file.fileText = Regex.Replace(file.fileText, @"\b[\w]{0," + n + @"}\b", string.Empty, RegexOptions.Compiled);
+                file.fileText = Regex.Replace(file.fileText, @"\s+", " ");
+
+                string[] words = file.fileText.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                MessageBox.Show("В файле " + file.filename + " удалено " + (word.Length - words.Length) + " слов, меньше " + n);
+            }
+
+            
         }
     }
 }
